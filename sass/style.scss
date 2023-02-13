@@ -1,0 +1,281 @@
+
+:root{
+    font-size: 62.5%;
+}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap');
+@import 'reset';
+@import 'mixin';
+@import 'conf';
+
+body{
+    @include general($clr-500,$clr-300,$ff-1,$fs-1,$fw-1,start);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (min-width:700px){
+        min-height: none;
+        height: 100vh;
+    }
+
+    main{
+        padding: 3rem 1.3rem;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+
+        @media (min-width:700px){
+            padding: 0;
+            display: grid;
+            grid-template-columns: 2.9fr 1fr;
+            grid-template-rows: auto auto auto;
+            grid-template-areas: 
+            "header header"
+            "section aside"
+            "footer footer";
+            column-gap: 2rem;
+            row-gap: 3rem;
+            justify-content: center;
+            align-items: center;
+
+            height: 80%;
+            width: 80%;
+        }
+
+        header{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            grid-column: 2 span;
+
+            padding-block-end: 3rem;
+            @media (min-width:700px){
+                padding: 0;
+                grid-area: header;
+            }
+
+            .logo{
+                img{
+                    width: 100%;
+                }
+            }
+            nav{
+                position: absolute;
+                top:0;
+                right:0;
+                grid-column: 2/3;
+                grid-row: 1;
+                background-color: $clr-300;
+                box-shadow: 0 0 1px 100vw rgba($color: #000000, $alpha: 0.6);
+                width: 100%;
+                min-height: 100vh;
+                display: none;
+                flex-direction: column;
+                gap:6rem;
+
+                @media (min-width:700px){
+                    display: block;
+                    position: relative;
+                    box-shadow: none;
+                    min-height: auto;
+                    width:auto
+                }
+
+                .close-menu{
+                    align-self: flex-end;
+                    padding:2rem 2rem 0 0 ;
+
+                    @media (min-width:700px){
+                        display: none;
+                    }
+
+                }
+                ul{
+                    @include font($clr-600,inherit,1.8rem,$fw-1);
+                    padding-inline-start: 2rem;
+
+                    @media (min-width:700px){
+                        padding: 0;
+                        display: flex;
+                        gap:2.5rem;
+                    }
+
+                    li{
+                        padding-block-end: 2.3rem;
+
+                        &:hover{color:$clr-200}
+
+                        @media (min-width:700px){
+                            padding: 0;
+                        }
+
+                        a{
+                            color: inherit;
+                        }
+                    }
+                }
+            }
+            .open-menu{
+                @media (min-width:700px){
+                    display: none;
+                }
+            }
+        }
+
+        section{
+            padding-block-end: 7rem;
+            grid-column: 2 span;
+
+            @media (min-width:700px){
+                padding: 0;
+                grid-area: section;
+                align-self: baseline;
+            }
+
+            .showcase-image{
+                padding-block-end: 3rem;
+
+                @media (min-width:700px){
+                    padding: 0;
+                }
+
+                img{
+                    width: 100%;
+                }
+            }
+            
+            .showcase-content{
+                @media (min-width:700px){
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-template-rows: auto auto;
+                    justify-content: center;
+                    align-items: center;
+                    column-gap: 10rem;
+                }
+                h1{
+                    @include font ($clr-600,inherit,4rem,$fw-3);
+                    line-height: 1;
+                    padding-block-end: 1.5rem;
+                    grid-column: 1/2;
+                    grid-row: 1/3;
+
+                    @media (min-width:700px){
+                        font-size: 7rem;
+                        padding-block-start: 2rem;
+                    }
+                }
+                p{
+                    line-height: 1.6;
+                    padding-block-end: 2.5rem;
+
+                    @media (min-width:700px){
+                        font-size: 1.9rem;
+                    }
+                }
+                a{
+                    @include general($clr-300,$clr-200,inherit,1.3rem,$fw-2,center);
+                    text-transform: uppercase;
+                    letter-spacing: 0.4rem;
+                    padding: 1.1rem 3.5rem;
+
+                    &:hover{background-color: $clr-500;}
+
+                    @media (min-width:700px){
+                        width: 50%;
+                        grid-column: 2/3;
+                    }
+                }
+            }
+        }
+
+        aside{
+            background-color: $clr-500;
+            padding: 2rem 2rem 0;
+            grid-column: 2 span;
+
+            @media (min-width:700px){
+                padding: 0;
+                grid-area: aside;
+                align-self:stretch;
+            }
+
+            span{
+                @include font($clr-100,inherit,3rem,$fw-2);
+
+                @media (min-width:700px){
+                    padding:2rem;
+                }
+
+            }
+            .news-section{
+                @media (min-width:700px){
+                    padding-inline: 2rem;
+                }
+                .news{
+                    border-bottom: 1px solid $clr-300 ;
+                    padding-block: 3.2rem;
+
+                    h2{
+                        @include font($clr-300,inherit,2rem,$fw-3);
+                        padding-block-end: 0.2rem;
+                    }
+                    p{
+                        @include font($clr-400,inherit,1.5rem,$fw-1);
+                    }
+                }
+                .news-3{
+                    border: none;
+                }
+            }
+        }
+
+        footer{
+            padding-block: 4rem 8rem;
+            grid-column: 2 span;
+
+            @media (min-width:700px){
+                padding: 0;
+                grid-area: footer;
+
+                display: flex;
+                gap:16rem;
+            }
+
+            .side-news{
+                padding-block: 2.5rem 0;
+                display: flex;
+                gap:2rem;
+
+                @media (min-width:700px){
+                    padding: 0;
+                }
+
+                img{
+                    width: 20%;
+                    aspect-ratio: 0.77;
+                }
+                .text{
+                    display: block;
+                    span{
+                        @include font($clr-400,inherit,3rem,$fw-3)
+                    }
+                    .news-h{
+                        font-size: 1.8rem;
+                        font-weight: $fw-3;
+                        padding-block-end: 1rem;
+
+                        @media (min-width:700px){
+                            padding: 0em;
+                        }
+                    }
+                    p{
+                        @include font ($clr-400,inherit,$fs-1,$fw-1);
+                    }
+                }
+            }
+        }
+    }
+}
+
